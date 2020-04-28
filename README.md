@@ -1,6 +1,10 @@
 # IonicAngularTemplate
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0. and updated with ionic framework
+
+## Ionic Serve
+
+Run `ionic serve ` for mobile app 
 
 ## Development server
 
