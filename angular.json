@@ -215,6 +215,127 @@
           }
         }
       }
+    },
+    "app-demo-one": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/app-demo-one",
+      "sourceRoot": "projects/app-demo-one/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/app-demo-one",
+            "index": "projects/app-demo-one/src/index.html",
+            "main": "projects/app-demo-one/src/main.ts",
+            "polyfills": "projects/app-demo-one/src/polyfills.ts",
+            "tsConfig": "projects/app-demo-one/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/app-demo-one/src/favicon.ico",
+              "projects/app-demo-one/src/assets"
+            ],
+            "styles": [
+              "projects/app-demo-one/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/app-demo-one/src/environments/environment.ts",
+                  "with": "projects/app-demo-one/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "app-demo-one:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "app-demo-one:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "app-demo-one:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/app-demo-one/src/test.ts",
+            "polyfills": "projects/app-demo-one/src/polyfills.ts",
+            "tsConfig": "projects/app-demo-one/tsconfig.spec.json",
+            "karmaConfig": "projects/app-demo-one/karma.conf.js",
+            "assets": [
+              "projects/app-demo-one/src/favicon.ico",
+              "projects/app-demo-one/src/assets"
+            ],
+            "styles": [
+              "projects/app-demo-one/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/app-demo-one/tsconfig.app.json",
+              "projects/app-demo-one/tsconfig.spec.json",
+              "projects/app-demo-one/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/app-demo-one/e2e/protractor.conf.js",
+            "devServerTarget": "app-demo-one:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "app-demo-one:serve:production"
+            }
+          }
+        }
+      }
     }
   },
   "defaultProject": "app"
